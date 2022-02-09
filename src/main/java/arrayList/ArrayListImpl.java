@@ -103,6 +103,16 @@ public class ArrayListImpl <T> implements SpecArrayList<T> {
         return 0;
     }
 
+    @Override
+    public int indexOf() {
+        return 0;
+    }
+
+    @Override
+    public int lastIndexOf() {
+        return 0;
+    }
+
     private void checkIndexBound(int index) {
         if (index >= this.arrSize) {
             throw new IndexOutOfBoundsException();

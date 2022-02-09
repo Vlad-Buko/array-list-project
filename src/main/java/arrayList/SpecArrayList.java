@@ -19,4 +19,9 @@ public interface SpecArrayList<T> {
     T get(int index);
 
     int size();
+
+    int indexOf();
+
+    int lastIndexOf();
+
 }
