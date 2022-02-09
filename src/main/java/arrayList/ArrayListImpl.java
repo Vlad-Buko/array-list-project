@@ -2,7 +2,7 @@ package arrayList;
 
 import java.util.Arrays;
 
-public class ArrayListImpl <T> implements SpecArrayList<T> {
+public class ArrayListImpl<T> implements SpecArrayList<T> {
 
     private int arrSize;
     private T[] array;
@@ -58,8 +58,9 @@ public class ArrayListImpl <T> implements SpecArrayList<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void sort() {
-
+        this.array = (T[]) Arrays.stream(this.array).sorted().toArray(Object[]::new);
     }
 
     @Override
@@ -95,22 +96,37 @@ public class ArrayListImpl <T> implements SpecArrayList<T> {
 
     @Override
     public T get(int index) {
-        return null;
+        checkIndexBound(index);
+        return this.array[index];
     }
 
     @Override
     public int size() {
-        return 0;
+        return arrSize;
     }
 
     @Override
-    public int indexOf() {
-        return 0;
+    public int indexOf(T e) {
+        if (!checkElementExist(e)) return -1;
+        int i = 0;
+        for (; i < arrSize; i++) {
+            if (this.array[i].equals(e)) {
+                break;
+            }
+        }
+        return i;
     }
 
     @Override
-    public int lastIndexOf() {
-        return 0;
+    public int lastIndexOf(T e) {
+        if (!checkElementExist(e)) return -1;
+        int i = arrSize - 1;
+        for (; i > 0; i--) {
+            if (this.array[i].equals(e)) {
+                break;
+            }
+        }
+        return i;
     }
 
     private void checkIndexBound(int index) {
@@ -123,7 +139,7 @@ public class ArrayListImpl <T> implements SpecArrayList<T> {
     @SuppressWarnings("unchecked")
     public boolean remove(T e) {
         boolean deleted = false;
-        if (checkElementExist(e)) return false;
+        if (!checkElementExist(e)) return false;
         T[] tmp = this.array;
         this.array = (T[]) new Object[arrSize - 1];
         for (int i = 0; i < this.array.length; i++) {
@@ -141,10 +157,11 @@ public class ArrayListImpl <T> implements SpecArrayList<T> {
         }
         return deleted;
     }
+
     private boolean checkElementExist(T e) {
         boolean found = false;
         for (T element : array) {
-            if (element.equals(e)){
+            if (element.equals(e)) {
                 found = true;
                 break;
             }

@@ -20,8 +20,8 @@ public interface SpecArrayList<T> {
 
     int size();
 
-    int indexOf();
+    int indexOf(T e);
 
-    int lastIndexOf();
+    int lastIndexOf(T e);
 
 }
