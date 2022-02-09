@@ -150,7 +150,7 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
                     this.array[i] = tmp[i];
                 }
             } else {
-                this.array[i] = tmp[i+1];
+                this.array[i-1] = tmp[i];
             }
         }
         arrSize--;
