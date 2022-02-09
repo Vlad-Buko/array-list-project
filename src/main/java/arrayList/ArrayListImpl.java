@@ -84,7 +84,7 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
                 this.array[i] = tmp[i + 1];
             }
         }
-        this.arrSize--;
+        arrSize--;
         return true;
     }
 
@@ -142,19 +142,18 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
         if (!checkElementExist(e)) return false;
         T[] tmp = this.array;
         this.array = (T[]) new Object[arrSize - 1];
-        for (int i = 0; i < this.array.length; i++) {
+        for (int i = 0; i < arrSize; i++) {
             if (!deleted) {
                 if (tmp[i].equals(e)) {
                     deleted = true;
-                    this.array[i] = tmp[i + 1];
-                    this.arrSize--;
                 } else {
                     this.array[i] = tmp[i];
                 }
             } else {
-                this.array[i] = tmp[i + 1];
+                this.array[i] = tmp[i+1];
             }
         }
+        arrSize--;
         return deleted;
     }
 
