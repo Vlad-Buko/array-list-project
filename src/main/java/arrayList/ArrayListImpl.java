@@ -2,25 +2,22 @@ package arrayList;
 
 import java.util.ArrayList;
 
-public class ArrayListImpl <T> implements SpecArrayList {
-
-//    private static final int DEFAULT_CAPACITY = 10;
-//    private static final Object[] EMPTY_ELEMENTDATA = {};
-
-    private int size;
+public class ArrayListImpl <T> implements SpecArrayList <T>{
+    private int arrSize;
+    private T[] array;
 
     @Override
-    public void add(Object o) {
+    public void add(T t) {
 
     }
 
     @Override
-    public void add(Object o, Object[] elementData, int s) {
+    public void add(Object e, int index) {
 
     }
 
     @Override
-    public void add(Object o, int index) {
+    public void addAll(ArrayListImpl arrayList) {
 
     }
 
@@ -30,22 +27,37 @@ public class ArrayListImpl <T> implements SpecArrayList {
     }
 
     @Override
-    public void concat(SpecArrayList newList) {
-
-    }
-
-    @Override
-    public boolean delete(int index) {
+    public boolean remove(int index) {
         return false;
     }
 
     @Override
-    public Object get(int index) {
+    public boolean remove(Object e) {
+        return false;
+    }
+
+    @Override
+    public void set(int index, Object e) {
+
+    }
+
+    @Override
+    public T get(int index) {
         return null;
     }
 
     @Override
     public int size() {
+        return 0;
+    }
+
+    @Override
+    public int indexOf(Object e) {
+        return 0;
+    }
+
+    @Override
+    public int lastIndexOf(Object e) {
         return 0;
     }
 }

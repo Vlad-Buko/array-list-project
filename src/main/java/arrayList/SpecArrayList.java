@@ -1,20 +1,27 @@
 package arrayList;
 
-public interface SpecArrayList <T> {
+public interface SpecArrayList<T> {
 
-    void add(T t);
-    // Оставил дженерик
-    void add(T t, Object[] elementData, int s);
+    void add(T e);
 
-    void add(Object o, int index);
+    void add(T e, int index);
+
+    void addAll(ArrayListImpl<T> arrayList);
 
     void sort();
 
-    void concat(SpecArrayList<T> newList);
+    boolean remove(int index);
 
-    boolean delete(int index);
+    boolean remove(T e);
+
+    public void set(int index, T e);
 
     T get(int index);
 
     int size();
+
+    int indexOf(T e);
+
+    int lastIndexOf(T e);
+
 }
