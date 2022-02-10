@@ -2,6 +2,7 @@ package arrayList;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
@@ -32,6 +33,14 @@ public class Main {
         System.out.println(namePerson);
         namePerson.set(namePerson.lastIndexOf("Tom5"), namePerson.get(1));
         System.out.println(namePerson);
+        long start = System.nanoTime();
+        for (int i = 0; i < 100; i++) {
+            namePerson.add("Test" + i, namePerson.size() / 2);
+        }
+        long finish = System.nanoTime();
+        System.out.println(TimeUnit.MILLISECONDS.convert((finish - start), TimeUnit.NANOSECONDS) + " milliSec");
+//        System.out.println(namePerson);
+
 
         SpecArrayList<Integer> arrayList = new ArrayListImpl<>();
         for (int i = 0; i < 20; i++) {
@@ -41,7 +50,7 @@ public class Main {
         arrayList.sort();
         System.out.println(arrayList);
 
-        ArrayList<String> list = new ArrayList<>();
+
 
     }
 }

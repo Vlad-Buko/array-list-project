@@ -109,9 +109,17 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
     public int indexOf(T e) {
         if (!checkElementExist(e)) return -1;
         int i = 0;
-        for (; i < arrSize; i++) {
-            if (this.array[i].equals(e)) {
-                break;
+        if (e == null) {
+            for (; i < arrSize; i++) {
+                if (this.array[i] == e) {
+                    break;
+                }
+            }
+        } else {
+            for (; i < arrSize; i++) {
+                if (this.array[i].equals(e)) {
+                    break;
+                }
             }
         }
         return i;
@@ -121,9 +129,17 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
     public int lastIndexOf(T e) {
         if (!checkElementExist(e)) return -1;
         int i = arrSize - 1;
-        for (; i > 0; i--) {
-            if (this.array[i].equals(e)) {
-                break;
+        if (e == null) {
+            for (; i > 0; i--) {
+                if (this.array[i] == e) {
+                    break;
+                }
+            }
+        } else {
+            for (; i > 0; i--) {
+                if (this.array[i].equals(e)) {
+                    break;
+                }
             }
         }
         return i;
@@ -142,15 +158,29 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
         if (!checkElementExist(e)) return false;
         T[] tmp = this.array;
         this.array = (T[]) new Object[arrSize - 1];
-        for (int i = 0; i < arrSize; i++) {
-            if (!deleted) {
-                if (tmp[i].equals(e)) {
-                    deleted = true;
+        if (e == null) {
+            for (int i = 0; i < arrSize; i++) {
+                if (!deleted) {
+                    if (tmp[i] == e) {
+                        deleted = true;
+                    } else {
+                        this.array[i] = tmp[i];
+                    }
                 } else {
-                    this.array[i] = tmp[i];
+                    this.array[i - 1] = tmp[i];
                 }
-            } else {
-                this.array[i-1] = tmp[i];
+            }
+        } else {
+            for (int i = 0; i < arrSize; i++) {
+                if (!deleted) {
+                    if (tmp[i].equals(e)) {
+                        deleted = true;
+                    } else {
+                        this.array[i] = tmp[i];
+                    }
+                } else {
+                    this.array[i - 1] = tmp[i];
+                }
             }
         }
         arrSize--;
@@ -159,10 +189,19 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
 
     private boolean checkElementExist(T e) {
         boolean found = false;
-        for (T element : array) {
-            if (element.equals(e)) {
-                found = true;
-                break;
+        if (e == null) {
+            for (T element : array) {
+                if (element == e) {
+                    found = true;
+                    break;
+                }
+            }
+        } else {
+            for (T element : array) {
+                if (element.equals(e)) {
+                    found = true;
+                    break;
+                }
             }
         }
         return found;
