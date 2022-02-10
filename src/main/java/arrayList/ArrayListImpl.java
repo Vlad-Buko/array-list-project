@@ -48,4 +48,43 @@ public class ArrayListImpl <T> implements SpecArrayList {
     public int size() {
         return 0;
     }
+
+    //Георгий
+    @Override
+    public void add(int index, Object o) {
+
+        ArrayList<String> als = new ArrayList<>();
+        //als.add(index, new String(index + " Index"));
+        //als.add(index, new String(o.toString()));
+        als.add("index: " + index);
+        System.out.println("-- void add --\n" + als);
+
+    }
+
+    @Override
+    public void lastIndexOf(Object o) {
+
+        String str = "Hello, World!!!";
+        System.out.println("-- void lastIndexOf --\n" + str + " Index: ',' = " + str.lastIndexOf(","));
+        //System.out.println(str.lastIndexOf(","));
+
+    }
+
+    @Override
+    public void remove(Object o) {
+
+        ArrayList<Integer> al = new ArrayList<>();
+        //String str = "Hello, World!!!";
+        //int i = 1234567890;
+        al.add(6);
+        al.add(2);
+        al.add(5);
+
+        System.out.println("-- void remove --\n" + "ArrayList: " + al);
+        al.remove(new Integer(2));
+        System.out.println("Remove value: 2 = " + al);
+        //System.out.println(al);
+
+    }
+
 }

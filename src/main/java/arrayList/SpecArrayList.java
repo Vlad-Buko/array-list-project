@@ -17,4 +17,9 @@ public interface SpecArrayList <T> {
     T get(int index);
 
     int size();
+
+    //Георгий
+    void add(int index, T t);
+    void lastIndexOf(T t);
+    void remove(T t);
 }
