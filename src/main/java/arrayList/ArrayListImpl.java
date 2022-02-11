@@ -2,10 +2,23 @@ package arrayList;
 
 import java.util.Arrays;
 
+/**
+ * This is our own realisation of ArrayList with implementation
+ * of SpecArrayList interface
+ * @param <T> this is generic param
+ * @see arrayList.SpecArrayList
+ * @author JustShooter
+ * @version 0.1beta
+ */
 public class ArrayListImpl<T> implements SpecArrayList<T> {
+
     private int arrSize;
     private T[] array;
 
+    /**
+     * Adding one element to the end of our collection
+     * @param e some generic object
+     */
     @Override
     @SuppressWarnings("unchecked")
     public void add(T e) {
@@ -19,6 +32,11 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
         arrSize++;
     }
 
+    /**
+     * Adding one element to the specified by index param pace in our collection
+     * @param e some generic object
+     * @param index index to where place the object
+     */
     @Override
     @SuppressWarnings("unchecked")
     public void add(T e, int index) {
@@ -42,6 +60,10 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
         arrSize++;
     }
 
+    /**
+     * Adding another ArrayListImpl collection to the end of our collection
+     * @param arrayList another collection
+     */
     @Override
     @SuppressWarnings("unchecked")
     public void addAll(ArrayListImpl<T> arrayList) {
@@ -56,12 +78,20 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
         arrSize = tmp.length + arrayList.size();
     }
 
+    /**
+     * This is the sort method
+     * Very easy realisation with Stream API, better make bubble sorting
+     */
     @Override
     @SuppressWarnings("unchecked")
     public void sort() {
         array = (T[]) Arrays.stream(array).sorted().toArray(Object[]::new);
     }
 
+    /**
+     * This is override of toString method
+     * @return String literal with the arrSize var and content of our collection
+     */
     @Override
     public String toString() {
         return "ArrayListImpl{" +
@@ -70,6 +100,11 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
                 '}';
     }
 
+    /**
+     * Removing one element from our collection by index param
+     * @param index this is index of element to remove
+     * @return returns true if successful
+     */
     @Override
     @SuppressWarnings("unchecked")
     public boolean remove(int index) {
@@ -87,23 +122,42 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
         return true;
     }
 
+    /**
+     * Replace one element for another, that was given by param e
+     * @param index this is index of element witch is needed to be replaced
+     * @param e     this is new object, that will replace old one
+     */
     @Override
     public void set(int index, T e) {
         checkIndexBound(index);
         array[index] = e;
     }
 
+    /**
+     * This is get method, that will return the object at specified by index position
+     * @param index this is index of element, that need to be returned
+     * @return returns object at index position
+     */
     @Override
     public T get(int index) {
         checkIndexBound(index);
         return array[index];
     }
 
+    /**
+     * This methor returns size of our collection
+     * @return int var size
+     */
     @Override
     public int size() {
         return arrSize;
     }
 
+    /**
+     * Returns index of given param e
+     * @param e some object
+     * @return int position index
+     */
     @Override
     public int indexOf(T e) {
         if (!checkElementExist(e)) return -1;
@@ -124,6 +178,11 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
         return i;
     }
 
+    /**
+     * Same as indexOf, but here we iterate from the end of our collection
+     * @param e some object
+     * @return int position index
+     */
     @Override
     public int lastIndexOf(T e) {
         if (!checkElementExist(e)) return -1;
@@ -144,12 +203,23 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
         return i;
     }
 
+    /**
+     * This is private method for check is given index is in bound of our collection size
+     * throws IndexOutOfBound, if given index is greater than our collection size
+     * @param index given index to check
+     */
     private void checkIndexBound(int index) {
         if (index >= arrSize) {
             throw new IndexOutOfBoundsException();
         }
     }
 
+    /**
+     * Removing given in param e object if found
+     * @param e some object
+     * @return returns true, if given by param object "e" is found and removed
+     * or false, if not found
+     */
     @Override
     @SuppressWarnings("unchecked")
     public boolean remove(T e) {
@@ -186,6 +256,11 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
         return deleted;
     }
 
+    /**
+     * private method for check, if given by param object e is existed in our collection
+     * @param e some object for look up
+     * @return returns true if found, or false if not
+     */
     private boolean checkElementExist(T e) {
         boolean found = false;
         if (e == null) {
