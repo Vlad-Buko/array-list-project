@@ -10,33 +10,33 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
     @SuppressWarnings("unchecked")
     public void add(T e) {
         if (arrSize == 0) {
-            this.array = (T[]) new Object[1];
+            array = (T[]) new Object[1];
         } else {
-            T[] tmp = this.array;
-            this.array = Arrays.copyOf(tmp, arrSize + 1);
+            T[] tmp = array;
+            array = Arrays.copyOf(tmp, arrSize + 1);
         }
-        this.array[arrSize] = e;
+        array[arrSize] = e;
         arrSize++;
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void add(T e, int index) {
-        if (index > this.arrSize) {
+        if (index > arrSize) {
             throw new IndexOutOfBoundsException();
         }
         if (arrSize == 0) {
-            this.array = (T[]) new Object[1];
-            this.array[arrSize] = e;
+            array = (T[]) new Object[1];
+            array[arrSize] = e;
         } else {
-            T[] tmp = this.array;
-            this.array = (T[]) new Object[arrSize + 1];
+            T[] tmp = array;
+            array = (T[]) new Object[arrSize + 1];
             for (int i = 0; i < index; i++) {
-                this.array[i] = tmp[i];
+                array[i] = tmp[i];
             }
-            this.array[index] = e;
+            array[index] = e;
             for (int i = index; i < tmp.length; i++) {
-                this.array[i + 1] = tmp[i];
+                array[i + 1] = tmp[i];
             }
         }
         arrSize++;
@@ -45,21 +45,21 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
     @Override
     @SuppressWarnings("unchecked")
     public void addAll(ArrayListImpl<T> arrayList) {
-        T[] tmp = this.array;
-        this.array = (T[]) new Object[arrSize + arrayList.size()];
+        T[] tmp = array;
+        array = (T[]) new Object[arrSize + arrayList.size()];
         for (int i = 0; i < tmp.length; i++) {
-            this.array[i] = tmp[i];
+            array[i] = tmp[i];
         }
         for (int i = 0; i < arrayList.size(); i++) {
-            this.array[i + tmp.length] = arrayList.array[i];
+            array[i + tmp.length] = arrayList.array[i];
         }
-        this.arrSize = tmp.length + arrayList.size();
+        arrSize = tmp.length + arrayList.size();
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void sort() {
-        this.array = (T[]) Arrays.stream(this.array).sorted().toArray(Object[]::new);
+        array = (T[]) Arrays.stream(array).sorted().toArray(Object[]::new);
     }
 
     @Override
@@ -74,13 +74,13 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
     @SuppressWarnings("unchecked")
     public boolean remove(int index) {
         checkIndexBound(index);
-        T[] tmp = this.array;
-        this.array = (T[]) new Object[arrSize - 1];
-        for (int i = 0; i < this.array.length; i++) {
+        T[] tmp = array;
+        array = (T[]) new Object[arrSize - 1];
+        for (int i = 0; i < array.length; i++) {
             if (i < index) {
-                this.array[i] = tmp[i];
+                array[i] = tmp[i];
             } else {
-                this.array[i] = tmp[i + 1];
+                array[i] = tmp[i + 1];
             }
         }
         arrSize--;
@@ -90,13 +90,13 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
     @Override
     public void set(int index, T e) {
         checkIndexBound(index);
-        this.array[index] = e;
+        array[index] = e;
     }
 
     @Override
     public T get(int index) {
         checkIndexBound(index);
-        return this.array[index];
+        return array[index];
     }
 
     @Override
@@ -110,13 +110,13 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
         int i = 0;
         if (e == null) {
             for (; i < arrSize; i++) {
-                if (this.array[i] == e) {
+                if (array[i] == e) {
                     break;
                 }
             }
         } else {
             for (; i < arrSize; i++) {
-                if (this.array[i].equals(e)) {
+                if (array[i].equals(e)) {
                     break;
                 }
             }
@@ -130,13 +130,13 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
         int i = arrSize - 1;
         if (e == null) {
             for (; i > 0; i--) {
-                if (this.array[i] == e) {
+                if (array[i] == e) {
                     break;
                 }
             }
         } else {
             for (; i > 0; i--) {
-                if (this.array[i].equals(e)) {
+                if (array[i].equals(e)) {
                     break;
                 }
             }
@@ -145,7 +145,7 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
     }
 
     private void checkIndexBound(int index) {
-        if (index >= this.arrSize) {
+        if (index >= arrSize) {
             throw new IndexOutOfBoundsException();
         }
     }
@@ -155,18 +155,18 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
     public boolean remove(T e) {
         boolean deleted = false;
         if (!checkElementExist(e)) return false;
-        T[] tmp = this.array;
-        this.array = (T[]) new Object[arrSize - 1];
+        T[] tmp = array;
+        array = (T[]) new Object[arrSize - 1];
         if (e == null) {
             for (int i = 0; i < arrSize; i++) {
                 if (!deleted) {
                     if (tmp[i] == e) {
                         deleted = true;
                     } else {
-                        this.array[i] = tmp[i];
+                        array[i] = tmp[i];
                     }
                 } else {
-                    this.array[i - 1] = tmp[i];
+                    array[i - 1] = tmp[i];
                 }
             }
         } else {
@@ -175,10 +175,10 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
                     if (tmp[i].equals(e)) {
                         deleted = true;
                     } else {
-                        this.array[i] = tmp[i];
+                        array[i] = tmp[i];
                     }
                 } else {
-                    this.array[i - 1] = tmp[i];
+                    array[i - 1] = tmp[i];
                 }
             }
         }
