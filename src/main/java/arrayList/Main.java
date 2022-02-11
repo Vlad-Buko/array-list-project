@@ -3,6 +3,9 @@ package arrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Some testing of our own realisation of ArrayList
+ */
 public class Main {
     public static final Random RANDOM = new Random();
     public static final int BOUND = 100;

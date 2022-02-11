@@ -1,5 +1,9 @@
 package arrayList;
 
+/**
+ * Our own realisation of interface of ArrayList
+ * @param <T> this is generic param
+ */
 public interface SpecArrayList<T> {
 
     void add(T e);
