@@ -80,7 +80,7 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
 
     /**
      * This is the sort method
-     * Very easy realisation with Stream API, better make bubble sorting
+     * Very easy realisation with Stream API, better make by using compareTo
      */
     @Override
     @SuppressWarnings("unchecked")
@@ -145,7 +145,7 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
     }
 
     /**
-     * This methor returns size of our collection
+     * This method returns size of our collection
      * @return int var size
      */
     @Override
@@ -185,7 +185,23 @@ public class ArrayListImpl<T> implements SpecArrayList<T> {
      */
     @Override
     public int lastIndexOf(T e) {
-        if (!checkElementExist(e)) return -1;
+        boolean found = false;
+        if (e == null) {
+            for (T element : array) {
+                if (element == e) {
+                    found = true;
+                    break;
+                }
+            }
+        } else {
+            for (T element : array) {
+                if (element.equals(e)) {
+                    found = true;
+                    break;
+                }
+            }
+        }
+        if (!found) return -1;
         int i = arrSize - 1;
         if (e == null) {
             for (; i > 0; i--) {
