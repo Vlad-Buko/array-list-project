@@ -56,7 +56,7 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
 
     @Override
     public T remove(int index) {
-        
+
         return null;
     }
 
