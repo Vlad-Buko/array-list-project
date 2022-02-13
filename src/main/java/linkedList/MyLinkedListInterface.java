@@ -35,4 +35,6 @@ public interface MyLinkedListInterface<T> {
     int lastIndexOf(T e);
 
     void sort(Comparator<? super T> c);
+
+    void clear();
 }
