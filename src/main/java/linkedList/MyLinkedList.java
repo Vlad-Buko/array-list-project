@@ -5,15 +5,29 @@ import java.util.Comparator;
 import java.util.NoSuchElementException;
 
 /**
- * ToDo add comments
+ * Our realization of LinkedList.
  *
- * @param <T>
+ * @param <T> generic type
  */
 public class MyLinkedList<T> implements MyLinkedListInterface<T> {
+    /**
+     * Size of collection.
+     */
     private int size;
+    /**
+     * Reference to first node instance.
+     */
     private Node<T> first;
+    /**
+     * Reference to last node instance.
+     */
     private Node<T> last;
 
+    /**
+     * Adding element to index 0 of collection.
+     *
+     * @param e generic object
+     */
     @Override
     public void addFirst(T e) {
         MyLinkedList.Node<T> first = this.first;
@@ -27,6 +41,11 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
         size++;
     }
 
+    /**
+     * Adding element to end of linked list collection.
+     *
+     * @param e generic object
+     */
     @Override
     public void addLast(T e) {
         MyLinkedList.Node<T> last = this.last;
@@ -39,12 +58,24 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
         size++;
     }
 
+    /**
+     * Add element to collection, by calling addLast(e) method.
+     *
+     * @param e generic object
+     * @return always return true
+     */
     @Override
     public boolean add(T e) {
         addLast(e);
         return true;
     }
 
+    /**
+     * Adding element e to index position of collection.
+     *
+     * @param index position to add node have checking of valid index
+     * @param e     generic object
+     */
     @Override
     public void add(int index, T e) {
         if (index >= 0 && index <= size) {
@@ -78,6 +109,11 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
         }
     }
 
+    /**
+     * This method returns object stored in first node of collection.
+     *
+     * @return generic object
+     */
     @Override
     public T getFirst() {
         MyLinkedList.Node<T> firstNode = this.first;
@@ -86,6 +122,11 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
         return firstNode.item;
     }
 
+    /**
+     * This method returns object stored in last node of collection.
+     *
+     * @return generic object
+     */
     @Override
     public T getLast() {
         MyLinkedList.Node<T> LastNode = this.last;
@@ -94,6 +135,12 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
         return LastNode.item;
     }
 
+    /**
+     * This method returns object stored in index position node of collection.
+     *
+     * @param index of node in collection
+     * @return generic object
+     */
     @Override
     public T get(int index) {
         if (index < size / 2) {
@@ -134,6 +181,11 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
         return item;
     }
 
+    /**
+     * Removes last element in collection, and returns stored object.
+     *
+     * @return object that was stored in first place of this collection
+     */
     @Override
     public T removeLast() {
         Node<T> tNode = last;
@@ -152,15 +204,27 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
         return item;
     }
 
+    /**
+     * Removes object given in param.
+     *
+     * @param e generic object to remove if present
+     * @return true if given object is found and removed, else returns false.
+     */
     @Override
     public boolean remove(T e) {
         if (e == null) {
-            return remove(indexOf(e)) == e;
+            return remove(indexOf(null)) == null;
         } else {
             return remove(indexOf(e)).equals(e);
         }
     }
 
+    /**
+     * Removes object at index position
+     *
+     * @param index position
+     * @return generic object
+     */
     @Override
     public T remove(int index) {
         if (index < size / 2) {
@@ -184,11 +248,24 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
         }
     }
 
+    /**
+     * Checks if given generic object is present in collection.
+     *
+     * @param e generic object
+     * @return true if present, else false
+     */
     @Override
     public boolean contains(T e) {
         return indexOf(e) >= 0;
     }
 
+    /**
+     * Change stored element in index position to e generic object.
+     *
+     * @param index position
+     * @param e     generic object
+     * @return generic object that was stored at index position
+     */
     @Override
     public T set(int index, T e) {
         T item = remove(index);
@@ -196,6 +273,12 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
         return item;
     }
 
+    /**
+     * Searching for object e in collection.
+     *
+     * @param e generic object
+     * @return index of element, or -1 if not found
+     */
     @Override
     @SuppressWarnings("unchecked")
     public int indexOf(T e) {
@@ -203,7 +286,7 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
         int i = 0;
         if (e == null) {
             for (T t : objects) {
-                if (t == e) {
+                if (t == null) {
                     return i;
                 }
                 i++;
@@ -231,7 +314,7 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
         T[] objects = (T[]) this.toArray();
         if (e == null) {
             for (int i = objects.length - 1; i >= 0; i--) {
-                if (objects[i] == e) {
+                if (objects[i] == null) {
                     return i;
                 }
             }
