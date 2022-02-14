@@ -191,8 +191,9 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
 
     @Override
     public T set(int index, T e) {
-        // должен возвращать то что было в index
-        return null;
+        T item = remove(index);
+        add(index, e);
+        return item;
     }
 
     @Override
