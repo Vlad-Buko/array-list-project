@@ -25,10 +25,18 @@ public class Main {
         System.out.println(stringLinkedList);
         stringLinkedList.sort(String::compareTo);
         System.out.println(stringLinkedList);
+        System.out.println(stringLinkedList.set(2, "Set test"));
+        System.out.println(stringLinkedList);
+        System.out.println(stringLinkedList.get(1));
+        System.out.println(stringLinkedList.getFirst());
+        System.out.println(stringLinkedList.getLast());
+        System.out.println(stringLinkedList.lastIndexOf("Set test"));
+        System.out.println(stringLinkedList.contains("Set test"));
+
 
         MyLinkedList<Integer> integerMyLinkedList = new MyLinkedList<>();
         System.out.println(integerMyLinkedList);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1000; i++) {
             integerMyLinkedList.add(new Random().nextInt(100));
         }
         System.out.println(integerMyLinkedList);
