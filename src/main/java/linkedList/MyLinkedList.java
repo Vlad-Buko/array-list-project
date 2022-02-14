@@ -91,7 +91,20 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
 
     @Override
     public T get(int index) {
-        return null;
+        //return null;
+        //Georgiy
+        Node<T> listFirst = first;//, listLast = last;
+        for(int i = 0; i < index; i++)
+            listFirst = listFirst.next;
+
+        for(int i = 0; i > index; i--)
+            //listLast = listLast.prev;
+            listFirst = listFirst.prev;
+
+        listFirst.next = listFirst.prev;
+        T item = listFirst.item;
+        return item;
+
     }
 
     @Override
@@ -106,6 +119,12 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
 
     @Override
     public boolean remove(T e) {
+        //Georgiy
+        /**
+        MyLinkedList.Node<T> nextNode = null, prevNode = null;
+        nextNode = nextNode.next;
+        prevNode = prevNode.prev;
+        **/
         return false;
     }
 

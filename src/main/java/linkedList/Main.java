@@ -23,5 +23,13 @@ public class Main {
         integerMyLinkedList.sort(Integer::compare);
         System.out.println(integerMyLinkedList);
 
+        //Georgiy
+        /**
+        integerMyLinkedList.add(1);
+        System.out.println("My " + integerMyLinkedList);
+        integerMyLinkedList.remove(Integer.valueOf(11));
+        System.out.println("Remove " + integerMyLinkedList);
+        **/
+        System.out.println("Get item " + integerMyLinkedList.get(5));
     }
 }
