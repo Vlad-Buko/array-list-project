@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ProjectForAndersen" />
+        <module name="ArrayListProject" />
       </profile>
     </annotationProcessing>
   </component>

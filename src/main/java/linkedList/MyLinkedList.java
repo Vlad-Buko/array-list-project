@@ -2,6 +2,7 @@ package linkedList;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
 public class MyLinkedList<T> implements MyLinkedListInterface<T> {
@@ -96,12 +97,38 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
 
     @Override
     public T removeFirst() {
-        return null;
+        Node<T> tNode = first;
+        if (tNode == null) {
+            throw new NoSuchElementException();
+        }
+        T item = tNode.item;
+        MyLinkedList.Node<T> nextAfterTNode = tNode.next;
+        first = nextAfterTNode;
+        if (nextAfterTNode == null) {
+            last = null;
+        } else {
+            nextAfterTNode.prev = null;
+        }
+        size--;
+        return item;
     }
 
     @Override
     public T removeLast() {
-        return null;
+            Node<T> sNode = last;
+            if (sNode == null) {
+                throw new NoSuchElementException();
+            }
+            T item = sNode.item;
+            MyLinkedList.Node<T> lastAfterTNode = sNode.prev;
+            last = lastAfterTNode;
+            if (lastAfterTNode == null) {
+                first = null;
+            } else {
+                lastAfterTNode.next = null;
+            }
+            size--;
+            return item;
     }
 
     @Override
