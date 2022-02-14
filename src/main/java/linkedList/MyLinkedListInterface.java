@@ -37,4 +37,6 @@ public interface MyLinkedListInterface<T> {
     void sort(Comparator<? super T> c);
 
     void clear();
+
+    int size();
 }
