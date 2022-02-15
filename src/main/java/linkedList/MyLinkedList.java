@@ -17,11 +17,11 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
     /**
      * Reference to first node instance.
      */
-    private Node<T> first;
+    private MyLinkedList.Node<T> first;
     /**
      * Reference to last node instance.
      */
-    private Node<T> last;
+    private MyLinkedList.Node<T> last;
 
     /**
      * Adding element to index 0 of collection.
@@ -165,7 +165,7 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
      */
     @Override
     public T removeFirst() {
-        Node<T> tNode = first;
+        MyLinkedList.Node<T> tNode = first;
         if (tNode == null) {
             throw new NoSuchElementException();
         }
@@ -177,6 +177,8 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
         } else {
             nextAfterTNode.prev = null;
         }
+        tNode.next = null;
+        tNode.prev = null;
         size--;
         return item;
     }
@@ -188,7 +190,7 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
      */
     @Override
     public T removeLast() {
-        Node<T> tNode = last;
+        MyLinkedList.Node<T> tNode = last;
         if (tNode == null) {
             throw new NoSuchElementException();
         }
@@ -200,6 +202,8 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
         } else {
             beforeTNode.next = null;
         }
+        tNode.next = null;
+        tNode.prev = null;
         size--;
         return item;
     }
@@ -227,22 +231,32 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
      */
     @Override
     public T remove(int index) {
+        if (index == 0){
+            return removeFirst();
+        }
+        if (index == size-1){
+            return removeLast();
+        }
         if (index < size / 2) {
-            Node<T> firstNode = this.first;
+            MyLinkedList.Node<T> firstNode = this.first;
             for (int i = 0; i < index; i++) {
                 firstNode = firstNode.next;
             }
             firstNode.prev.next = firstNode.next;
             firstNode.next.prev = firstNode.prev;
+            firstNode.next = null;
+            firstNode.prev = null;
             size--;
             return firstNode.item;
         } else {
-            Node<T> lastNode = this.last;
+            MyLinkedList.Node<T> lastNode = this.last;
             for (int i = size - 1; i > index; i--) {
                 lastNode = lastNode.prev;
             }
             lastNode.prev.next = lastNode.next;
             lastNode.next.prev = lastNode.prev;
+            lastNode.next = null;
+            lastNode.prev = null;
             size--;
             return lastNode.item;
         }
