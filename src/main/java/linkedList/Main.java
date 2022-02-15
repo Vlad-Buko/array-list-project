@@ -47,15 +47,6 @@ public class Main {
         System.out.println(integerMyLinkedList);
         integerMyLinkedList.sort(Integer::compare);
         System.out.println(integerMyLinkedList);
-        System.out.println(stringLinkedList.indexOf("Hublotxx"));
-
-        //System.out.println(integerMyLinkedList);
-       // for (int i = 0; i < 10; i++) {
-           // integerMyLinkedList.add(new Random().nextInt(100));
-       // }
-       // System.out.println(integerMyLinkedList);
-       // integerMyLinkedList.sort(Integer::compare);
-       // System.out.println(integerMyLinkedList);
 
     }
 }
