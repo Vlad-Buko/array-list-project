@@ -31,6 +31,6 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Build and analyze
         env:
-          GITHUB_TOKEN: ${{ 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 }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ d65805d71b9738e57680a97b5d6c280e0862af6f }}
+          GITHUB_TOKEN: ${{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}}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{d65805d71b9738e57680a97b5d6c280e0862af6f}}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Vlad-Buko_ArrayListProject
