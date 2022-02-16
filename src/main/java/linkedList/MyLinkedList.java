@@ -143,18 +143,22 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
      */
     @Override
     public T get(int index) {
-        if (index < size / 2) {
-            MyLinkedList.Node<T> firstNode = this.first;
-            for (int i = 0; i < index; i++) {
-                firstNode = firstNode.next;
+        if (index >= 0 && index <= size) {
+            if (index < size / 2) {
+                MyLinkedList.Node<T> firstNode = this.first;
+                for (int i = 0; i < index; i++) {
+                    firstNode = firstNode.next;
+                }
+                return firstNode.item;
+            } else {
+                MyLinkedList.Node<T> lastNode = this.last;
+                for (int i = size - 1; i > index; i--) {
+                    lastNode = lastNode.prev;
+                }
+                return lastNode.item;
             }
-            return firstNode.item;
         } else {
-            MyLinkedList.Node<T> lastNode = this.last;
-            for (int i = size - 1; i > index; i--) {
-                lastNode = lastNode.prev;
-            }
-            return lastNode.item;
+            throw new IndexOutOfBoundsException("Index is " + index + " and size is " + size);
         }
     }
 
@@ -231,34 +235,38 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
      */
     @Override
     public T remove(int index) {
-        if (index == 0){
-            return removeFirst();
-        }
-        if (index == size-1){
-            return removeLast();
-        }
-        if (index < size / 2) {
-            MyLinkedList.Node<T> firstNode = this.first;
-            for (int i = 0; i < index; i++) {
-                firstNode = firstNode.next;
+        if (index >= 0 && index < size) {
+            if (index == 0) {
+                return removeFirst();
             }
-            firstNode.prev.next = firstNode.next;
-            firstNode.next.prev = firstNode.prev;
-            firstNode.next = null;
-            firstNode.prev = null;
-            size--;
-            return firstNode.item;
+            if (index == size - 1) {
+                return removeLast();
+            }
+            if (index < size / 2) {
+                MyLinkedList.Node<T> firstNode = this.first;
+                for (int i = 0; i < index; i++) {
+                    firstNode = firstNode.next;
+                }
+                firstNode.prev.next = firstNode.next;
+                firstNode.next.prev = firstNode.prev;
+                firstNode.next = null;
+                firstNode.prev = null;
+                size--;
+                return firstNode.item;
+            } else {
+                MyLinkedList.Node<T> lastNode = this.last;
+                for (int i = size - 1; i > index; i--) {
+                    lastNode = lastNode.prev;
+                }
+                lastNode.prev.next = lastNode.next;
+                lastNode.next.prev = lastNode.prev;
+                lastNode.next = null;
+                lastNode.prev = null;
+                size--;
+                return lastNode.item;
+            }
         } else {
-            MyLinkedList.Node<T> lastNode = this.last;
-            for (int i = size - 1; i > index; i--) {
-                lastNode = lastNode.prev;
-            }
-            lastNode.prev.next = lastNode.next;
-            lastNode.next.prev = lastNode.prev;
-            lastNode.next = null;
-            lastNode.prev = null;
-            size--;
-            return lastNode.item;
+            throw new IndexOutOfBoundsException("Index is " + index + " and size is " + size);
         }
     }
 

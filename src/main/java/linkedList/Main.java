@@ -37,6 +37,7 @@ public class Main {
         stringLinkedList.add("Mike");
         stringLinkedList.add("Pala");
         stringLinkedList.add("Hublot");
+        System.out.println(stringLinkedList.get(1000));
 
 
         MyLinkedList<Integer> integerMyLinkedList = new MyLinkedList<>();
