@@ -5,97 +5,154 @@ import java.util.Comparator;
 import java.util.NoSuchElementException;
 
 /**
- * ToDo add comments
+ * Our realization of LinkedList.
  *
- * @param <T>
+ * @param <T> generic type
  */
 public class MyLinkedList<T> implements MyLinkedListInterface<T> {
+    /**
+     * String constant for index is.
+     */
+    public static final String INDEX_IS = "Index is ";
+    /**
+     * String constant for size is.
+     */
+    public static final String SIZE_IS = " and size is ";
+    /**
+     * Size of collection.
+     */
     private int size;
-    private Node<T> first;
-    private Node<T> last;
+    /**
+     * Reference to first node instance.
+     */
+    private MyLinkedList.Node<T> first;
+    /**
+     * Reference to last node instance.
+     */
+    private MyLinkedList.Node<T> last;
 
+    /**
+     * Adding element to index 0 of collection.
+     *
+     * @param e generic object
+     */
     @Override
     public void addFirst(T e) {
-        MyLinkedList.Node<T> first = this.first;
-        MyLinkedList.Node<T> newNode = new MyLinkedList.Node<>(null, e, first);
+        MyLinkedList.Node<T> tNode = this.first;
+        MyLinkedList.Node<T> newNode = new MyLinkedList.Node<>(null, e, tNode);
         this.first = newNode;
-        if (first == null) {
+        if (tNode == null) {
             last = newNode;
         } else {
-            first.prev = newNode;
+            tNode.prev = newNode;
         }
         size++;
     }
 
+    /**
+     * Adding element to end of linked list collection.
+     *
+     * @param e generic object
+     */
     @Override
     public void addLast(T e) {
-        MyLinkedList.Node<T> last = this.last;
-        MyLinkedList.Node<T> newNode = new MyLinkedList.Node<>(last, e, null);
+        MyLinkedList.Node<T> tNode = this.last;
+        MyLinkedList.Node<T> newNode = new MyLinkedList.Node<>(tNode, e, null);
         this.last = newNode;
-        if (last == null)
+        if (tNode == null) {
             first = newNode;
-        else
-            last.next = newNode;
+        } else {
+            tNode.next = newNode;
+        }
         size++;
     }
 
+    /**
+     * Add element to collection, by calling addLast(e) method.
+     *
+     * @param e generic object
+     * @return always return true
+     */
     @Override
     public boolean add(T e) {
         addLast(e);
         return true;
     }
 
+    /**
+     * Adding element e to index position of collection.
+     *
+     * @param index position to add node have checking of valid index
+     * @param e     generic object
+     */
     @Override
     public void add(int index, T e) {
-        if (index >= 0 && index <= size) {
-            if (index == size) {
-                addLast(e);
-            } else {
-                MyLinkedList.Node<T> nextNode;
-                if (index < (size / 2)) {
-                    nextNode = first;
-                    for (int i = 0; i < index; i++) {
-                        nextNode = nextNode.next;
-                    }
-                } else {
-                    nextNode = last;
-                    for (int i = size - 1; i > index; i--) {
-                        nextNode = nextNode.prev;
-                    }
-                }
-                MyLinkedList.Node<T> previousNode = nextNode.prev;
-                MyLinkedList.Node<T> newNode = new MyLinkedList.Node<>(previousNode, e, nextNode);
-                nextNode.prev = newNode;
-                if (previousNode == null) {
-                    first = newNode;
-                } else {
-                    previousNode.next = newNode;
-                }
-                size++;
-            }
+        checkIndex(index);
+        if (index == size) {
+            addLast(e);
         } else {
-            throw new IndexOutOfBoundsException("Index is " + index + " and size is " + size);
+            MyLinkedList.Node<T> nextNode;
+            if (index < (size / 2)) {
+                nextNode = first;
+                for (int i = 0; i < index; i++) {
+                    nextNode = nextNode.next;
+                }
+            } else {
+                nextNode = last;
+                for (int i = size - 1; i > index; i--) {
+                    nextNode = nextNode.prev;
+                }
+            }
+            MyLinkedList.Node<T> previousNode = nextNode.prev;
+            MyLinkedList.Node<T> newNode =
+                    new MyLinkedList.Node<>(previousNode, e, nextNode);
+            nextNode.prev = newNode;
+            if (previousNode == null) {
+                first = newNode;
+            } else {
+                previousNode.next = newNode;
+            }
+            size++;
         }
     }
 
+    /**
+     * This method returns object stored in first node of collection.
+     *
+     * @return generic object
+     */
     @Override
     public T getFirst() {
         MyLinkedList.Node<T> firstNode = this.first;
-        if (firstNode == null)
+        if (firstNode == null) {
             throw new NoSuchElementException();
+        }
         return firstNode.item;
     }
 
+    /**
+     * This method returns object stored in last node of collection.
+     *
+     * @return generic object
+     */
     @Override
     public T getLast() {
-        MyLinkedList.Node<T> LastNode = this.last;
-        if (LastNode == null)
+        MyLinkedList.Node<T> lastNode = this.last;
+        if (lastNode == null) {
             throw new NoSuchElementException();
-        return LastNode.item;
+        }
+        return lastNode.item;
     }
 
+    /**
+     * This method returns object stored in index position node of collection.
+     *
+     * @param index of node in collection
+     * @return generic object
+     */
     @Override
     public T get(int index) {
+        checkIndex(index);
         if (index < size / 2) {
             MyLinkedList.Node<T> firstNode = this.first;
             for (int i = 0; i < index; i++) {
@@ -118,7 +175,7 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
      */
     @Override
     public T removeFirst() {
-        Node<T> tNode = first;
+        MyLinkedList.Node<T> tNode = first;
         if (tNode == null) {
             throw new NoSuchElementException();
         }
@@ -130,13 +187,20 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
         } else {
             nextAfterTNode.prev = null;
         }
+        tNode.next = null;
+        tNode.prev = null;
         size--;
         return item;
     }
 
+    /**
+     * Removes last element in collection, and returns stored object.
+     *
+     * @return object that was stored in first place of this collection
+     */
     @Override
     public T removeLast() {
-        Node<T> tNode = last;
+        MyLinkedList.Node<T> tNode = last;
         if (tNode == null) {
             throw new NoSuchElementException();
         }
@@ -148,47 +212,92 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
         } else {
             beforeTNode.next = null;
         }
+        tNode.next = null;
+        tNode.prev = null;
         size--;
         return item;
     }
 
+    /**
+     * Removes object given in param.
+     *
+     * @param e generic object to remove if present
+     * @return true if given object is found and removed, else returns false.
+     */
     @Override
     public boolean remove(T e) {
         if (e == null) {
-            return remove(indexOf(e)) == e;
+            return remove(indexOf(null)) == null;
         } else {
             return remove(indexOf(e)).equals(e);
         }
     }
 
+    /**
+     * Removes object at index position.
+     *
+     * @param index position
+     * @return generic object
+     */
     @Override
     public T remove(int index) {
+        checkIndex(index);
+        if (index == 0) {
+            return removeFirst();
+        }
+        if (index == size - 1) {
+            return removeLast();
+        }
         if (index < size / 2) {
-            Node<T> firstNode = this.first;
+            MyLinkedList.Node<T> firstNode = this.first;
             for (int i = 0; i < index; i++) {
                 firstNode = firstNode.next;
             }
             firstNode.prev.next = firstNode.next;
             firstNode.next.prev = firstNode.prev;
+            firstNode.next = null;
+            firstNode.prev = null;
             size--;
             return firstNode.item;
         } else {
-            Node<T> lastNode = this.last;
+            MyLinkedList.Node<T> lastNode = this.last;
             for (int i = size - 1; i > index; i--) {
                 lastNode = lastNode.prev;
             }
             lastNode.prev.next = lastNode.next;
             lastNode.next.prev = lastNode.prev;
+            lastNode.next = null;
+            lastNode.prev = null;
             size--;
             return lastNode.item;
         }
     }
 
+    private void checkIndex(int index) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException(INDEX_IS + index +
+                    SIZE_IS + size);
+        }
+    }
+
+    /**
+     * Checks if given generic object is present in collection.
+     *
+     * @param e generic object
+     * @return true if present, else false
+     */
     @Override
     public boolean contains(T e) {
         return indexOf(e) >= 0;
     }
 
+    /**
+     * Change stored element in index position to e generic object.
+     *
+     * @param index position
+     * @param e     generic object
+     * @return generic object that was stored at index position
+     */
     @Override
     public T set(int index, T e) {
         T item = remove(index);
@@ -196,6 +305,12 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
         return item;
     }
 
+    /**
+     * Searching for object e in collection.
+     *
+     * @param e generic object
+     * @return index of element, or -1 if not found
+     */
     @Override
     @SuppressWarnings("unchecked")
     public int indexOf(T e) {
@@ -203,7 +318,7 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
         int i = 0;
         if (e == null) {
             for (T t : objects) {
-                if (t == e) {
+                if (t == null) {
                     return i;
                 }
                 i++;
@@ -231,7 +346,7 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
         T[] objects = (T[]) this.toArray();
         if (e == null) {
             for (int i = objects.length - 1; i >= 0; i--) {
-                if (objects[i] == e) {
+                if (objects[i] == null) {
                     return i;
                 }
             }
@@ -319,7 +434,8 @@ public class MyLinkedList<T> implements MyLinkedListInterface<T> {
          * @param e        element to add in Node
          * @param nextNode reference to next Node
          */
-        Node(MyLinkedList.Node<T> prevNode, T e, MyLinkedList.Node<T> nextNode) {
+        Node(MyLinkedList.Node<T> prevNode, T e,
+             MyLinkedList.Node<T> nextNode) {
             this.item = e;
             this.next = nextNode;
             this.prev = prevNode;
