@@ -1,25 +1,19 @@
 package linkedList;
 
-import java.util.LinkedList;
 import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
 
         MyLinkedList<String> stringLinkedList = new MyLinkedList<>();
-        System.out.println(stringLinkedList);
-        for (int i = 0; i < 10; i++) {
-            stringLinkedList.add("Test " + (new Random().nextInt(100)));
-        }
-        System.out.println(stringLinkedList);
+        stringLinkedList.add("Vlad");
+        stringLinkedList.add("Mike");
+        stringLinkedList.add("Pala");
+        stringLinkedList.add("Hublot");
 
-        stringLinkedList.sort(String::compareTo);
-        stringLinkedList.removeFirst();
-        stringLinkedList.removeLast();
 
-        System.out.println(stringLinkedList);
+        System.out.println(stringLinkedList.indexOf("Hublotxx"));
 
-        //MyLinkedList<Integer> integerMyLinkedList = new MyLinkedList<>();
         //System.out.println(integerMyLinkedList);
        // for (int i = 0; i < 10; i++) {
            // integerMyLinkedList.add(new Random().nextInt(100));
