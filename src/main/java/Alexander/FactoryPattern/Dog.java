@@ -3,7 +3,9 @@ package Alexander.FactoryPattern;
 import Alexander.FactoryPattern.Astronaut;
 
 public class Dog extends Astronaut {
-    public Dog(String name) {
+
+
+    Dog(String name) {
         super(name);
     }
 
