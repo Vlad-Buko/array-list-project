@@ -1,4 +1,4 @@
-package Alexander.FactoryPattern.PrototypePattern;
+package AleksanderPrototype;
 
 public interface Copyable {
     Copyable copy();

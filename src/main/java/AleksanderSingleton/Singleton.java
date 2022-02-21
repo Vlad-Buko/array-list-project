@@ -1,4 +1,4 @@
-package Alexander.FactoryPattern.SingletonPattern;
+package AleksanderSingleton;
 
 public class Singleton {
     private static Singleton instance = null;
@@ -9,7 +9,5 @@ public class Singleton {
         }
         return instance;
     }
-    public void setUp() {
-        System.out.println("Обьект создан в единственном экземпляре");
-    }
+
 }

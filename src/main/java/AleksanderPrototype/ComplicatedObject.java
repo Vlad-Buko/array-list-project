@@ -1,4 +1,4 @@
-package Alexander.FactoryPattern.PrototypePattern;
+package AleksanderPrototype;
 
 public class ComplicatedObject implements Copyable {
     public String name;
