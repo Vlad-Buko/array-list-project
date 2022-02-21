@@ -4,15 +4,15 @@ public class Cat  {
    public final int age;
    public final int weight;
    public final int growth;
-   public final int blood_type;
-   public final int suit_size;
+   public final int bloodType;
+   public final int suitSize;
 
     public Cat(Builder builder) {
         age=builder.age;
         weight = builder.weight;
         growth = builder.growth;
-        blood_type = builder.blood_type;
-        suit_size = builder.suit_size;
+        bloodType = builder.bloodType;
+        suitSize = builder.suitSize;
     }
 
     public static class Builder
@@ -21,8 +21,8 @@ public class Cat  {
 
        public  int weight;
        public  int growth;
-       public  int blood_type;
-       public  int suit_size;
+       public  int bloodType;
+       public  int suitSize;
 
        public Builder(int age) {
            this.age = age;
@@ -38,14 +38,14 @@ public class Cat  {
            growth = val;
            return this;
        }
-       public Builder blood_type (int val)
+       public Builder bloodType (int val)
        {
-           blood_type = val;
+           bloodType = val;
            return this;
        }
-       public Builder suit_size (int val)
+       public Builder suitSize (int val)
        {
-           suit_size = val;
+           suitSize = val;
            return this;
        }
 

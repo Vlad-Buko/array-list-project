@@ -4,15 +4,15 @@ public class Dog  {
     public final int age;
     public final int weight;
     public final int growth;
-    public final int blood_type;
-    public final int suit_size;
+    public final int bloodType;
+    public final int suitSize;
 
     public Dog(Builder builder) {
         age = builder.age;
         weight = builder.weight;
         growth = builder.growth;
-        blood_type = builder.blood_type;
-        suit_size = builder.suit_size;
+        bloodType = builder.bloodType;
+        suitSize = builder.suitSize;
     }
 
 
@@ -23,8 +23,8 @@ public class Dog  {
         //Необязательные параметры со значениями по умолчанию
         public int weight;
         public int growth;
-        public int blood_type;
-        public int suit_size;
+        public int bloodType;
+        public int suitSize;
 
         public Builder(int age) {
 
@@ -42,12 +42,12 @@ public class Dog  {
         }
 
         public Builder blood_type(int val) {
-            blood_type = val;
+            bloodType = val;
             return this;
         }
 
         public Builder suit_size(int val) {
-            suit_size = val;
+            suitSize = val;
             return this;
         }
         public Dog builder ()
