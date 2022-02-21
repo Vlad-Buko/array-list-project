@@ -15,7 +15,7 @@ public class Start {
                 .build();
 
 
-        System.out.println(human.weight+" "+human.age+" "+human.blood_type+" "+human.growth);
+        System.out.println(human.weight+" "+human.age+" "+human.bloodType+" "+human.growth);
         System.out.println(dog.weight+" "+dog.age);
         System.out.println(cat.weight+" "+cat.age);
 
