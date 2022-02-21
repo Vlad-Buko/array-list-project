@@ -21,10 +21,10 @@ public class Dog  {
 
         public int age;
         //Необязательные параметры со значениями по умолчанию
-        public int weight = 0;
-        public int growth = 0;
-        public int blood_type = 0;
-        public int suit_size = 0;
+        public int weight;
+        public int growth;
+        public int blood_type;
+        public int suit_size;
 
         public Builder(int age) {
 

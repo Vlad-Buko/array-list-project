@@ -6,8 +6,10 @@ public class Cat extends Astronaut {
     public Cat(String name) {
         super(name);
     }
-    public String getInfo ()
-    {
+
+    @Override
+    public String getInfo() {
         return  name;
     }
+
 }

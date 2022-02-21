@@ -7,8 +7,10 @@ public class Human extends Astronaut {
         super(name);
     }
 
-    public String getInfo ()
-    {
+    @Override
+    public String getInfo() {
         return  name;
     }
+
+
 }
