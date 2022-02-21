@@ -8,25 +8,26 @@ import vladislav.templates.abstractFactory.model.MotorcycleDrive;
 import vladislav.templates.abstractFactory.model.MotorcycleSpeed;
 
 public class MotorcycleFactory implements FactoryInterface {
+    org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(MotorcycleFactory.class);
     public MotorcycleFactory() {
-        System.out.println("Create form for moto");
+        logger.info("Create form for moto");
     }
 
     @Override
     public Color createColor() {
-        System.out.println("Create moto color");
+        logger.info("Create moto color");
         return new MotorcycleColor();
     }
 
     @Override
     public Drive createDrive() {
-        System.out.println("Create moto drive");
+        logger.info("Create moto drive");
         return new MotorcycleDrive();
     }
 
     @Override
     public Speed createValueSpeed() {
-        System.out.println("Set moto speed");
+        logger.info("Set moto speed");
         return new MotorcycleSpeed();
     }
 }

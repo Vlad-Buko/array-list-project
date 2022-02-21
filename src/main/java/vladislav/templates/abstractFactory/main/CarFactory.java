@@ -8,25 +8,26 @@ import vladislav.templates.abstractFactory.model.CarDrive;
 import vladislav.templates.abstractFactory.model.CarSpeed;
 
 public class CarFactory implements FactoryInterface {
+    org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OrderCarForm.class);
     public CarFactory() {
-        System.out.println("Implementation car class");
+        logger.info("Implementation car class");
     }
 
     @Override
     public Color createColor() {
-        System.out.println("Create car color");
+        logger.info("Create car color");
         return new CarColor();
     }
 
     @Override
     public Drive createDrive() {
-        System.out.println("Create car drive");
+        logger.info("Create car drive");
         return new CarDrive();
     }
 
     @Override
     public Speed createValueSpeed() {
-        System.out.println("Create car speed");
+        logger.info("Create car speed");
         return new CarSpeed();
     }
 }

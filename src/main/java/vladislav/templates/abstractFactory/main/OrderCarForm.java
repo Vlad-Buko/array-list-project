@@ -6,12 +6,13 @@ import vladislav.templates.abstractFactory.interfaceModel.Speed;
 
 
 public class OrderCarForm {
-    private final Color createColorField;
-    private final Drive createDriveVariable;
-    private final Speed createSetSpeed;
+    org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OrderCarForm.class);
+    final Color createColorField;
+    final Drive createDriveVariable;
+    final Speed createSetSpeed;
 
     public OrderCarForm(FactoryInterface factory) {
-        System.out.println("Creating order form");
+        logger.info("Creating order form");
         createColorField = factory.createColor();
         createDriveVariable = factory.createDrive();
         createSetSpeed = factory.createValueSpeed();
