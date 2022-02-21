@@ -1,4 +1,4 @@
-package Alexander.BuilderPattern;
+package Alexander.FactoryPattern.BuilderPattern;
 
 public class Human  {
     public final int age;
