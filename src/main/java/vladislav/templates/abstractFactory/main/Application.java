@@ -1,9 +1,8 @@
 package vladislav.templates.abstractFactory.main;
 
-import vladislav.templates.abstractFactory.model.CarColor;
 
 public class Application {
-    private OrderCarForm orderCarForm;
+    OrderCarForm orderCarForm;
 
     public void drawOrderSomethingForm(String something) {
 
