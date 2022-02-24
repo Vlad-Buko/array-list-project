@@ -1,4 +1,4 @@
-package vladislav.templates;
+package vladislav.templates.singleton;
 
 import vladislav.templates.singleton.Singleton;
 
